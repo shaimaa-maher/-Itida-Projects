@@ -5,8 +5,8 @@ The project has some HTML and CSS styling and JavaScript code to increase the fe
 ## Table of Contents
 
 * [Instructions](#instructions)
-* [Tools]
-* [Technologies]
+* [Tools](#tools)
+* [Technologies](#technologies)
 
 ## Instructions
 ```
