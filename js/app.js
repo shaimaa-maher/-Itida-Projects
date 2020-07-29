@@ -189,32 +189,27 @@ window.onscroll = () => {
     //view port function
     getSectionIdToViewPort();
 
-
-    // nav bar hidden 
-    var currentScrollPos = window.pageYOffset;
-    if (prevScrollpos > currentScrollPos) {
-        document.getElementById("page__header").style.top = "0";
-    } else {
-        document.getElementById("page__header").style.top = "-50px";
-    }
-    prevScrollpos = currentScrollPos;
-
-
 };
 
 // collapse the section 
 
-var collItem = document.getElementsByClassName("collapsible");
-
+let collItem = document.getElementsByClassName("collapsible");
 
 for (let i = 0; i < collItem.length; i++) {
 
     collItem[i].addEventListener("click", function() {
-        var content = this.nextElementSibling;
+
+
+        //console.log();
+        let content = this.nextElementSibling;
         if (content.style.maxHeight) {
             content.style.maxHeight = null;
+            document.getElementsByTagName("span")[i].textContent = '+';
+
         } else {
             content.style.maxHeight = content.scrollHeight + "px";
+            document.getElementsByTagName("span")[i].textContent = '-';
+
         }
     });
 }

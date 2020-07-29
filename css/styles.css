@@ -65,6 +65,13 @@
                             font-family: 'Oxygen', Sans-Serif;
                             font-size: 2em;
                             color: #fff;
+                            display: inline;
+                        }
+                        
+                        span {
+                            float: right;
+                            font-size: 3em;
+                            color: #fff;
                         }
                         
                         p {
@@ -132,6 +139,11 @@
                             top: 0;
                             width: 100%;
                             z-index: 5;
+                        }
+                        
+                        .hideNav {
+                            opacity: 0;
+                            transition: transform 0.4s, opacity 0.2s;
                         }
                         /* Footer Styles */
                         
