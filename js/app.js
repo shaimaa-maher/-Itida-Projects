@@ -39,10 +39,11 @@ for (let i = 0; i < sectionsNum; i++) {
 }
 
 
-function RemoveActive() {
+function RemoveActiveSec() {
     for (let i = 0; i < AllSections.length; i++) {
 
         if (AllSections[i].classList.contains("your-active-class")) {
+
             AllSections[i].classList.remove("your-active-class");
 
         }
@@ -58,6 +59,7 @@ function RemoveActiveNavItem() {
     for (let i = 0; i < navItems.length; i++) {
 
         if (navItems[i].classList.contains("active")) {
+
             navItems[i].classList.remove("active");
         }
     }
@@ -69,8 +71,8 @@ function RemoveActiveNavItem() {
  * 
  */
 
-window.onscroll = function() { scrollFun(); };
 
+// appear/hide the top button.
 function scrollFun() {
     let topBTN = document.getElementById("myBtn");
     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
@@ -80,8 +82,10 @@ function scrollFun() {
     }
 }
 
-
+// scroll to top of the page.
 function topFun() {
+    RemoveActiveNavItem();
+    RemoveActiveSec();
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
@@ -97,6 +101,7 @@ for (let i = 0; i < MySections.length; i++) {
     item = document.createElement("li");
     item.textContent = MySections[i].dataNavBar;
     item.className = "menu__link";
+    // item.id = MySections[i].id;
     navMenu.appendChild(item);
 
 
@@ -110,7 +115,7 @@ for (let i = 0; i < MySections.length; i++) {
 
         // Scroll to section on link click
         section.scrollIntoView();
-        RemoveActive();
+        RemoveActiveSec();
 
         let itemLi = document.querySelectorAll('li')[i];
         document.getElementById(id).classList.add("your-active-class");
@@ -119,7 +124,53 @@ for (let i = 0; i < MySections.length; i++) {
     });
 
 }
-// Add class 'active' to section when near top of viewport
+
+
+//get sections id and send it to viewPortSection().
+function getSectionIdToViewPort() {
+
+    for (let i = 0; i < MySections.length; i++) {
+        const elementId = MySections[i].id;
+
+        viewPortSection(elementId);
+
+    }
+}
+
+
+function viewPortSection(secId) {
+    let secTop = document.getElementById(secId).getBoundingClientRect().top;
+
+    if (secTop <= 500) {
+        RemoveActiveSec();
+        RemoveActiveNavItem();
+
+        document.getElementById(secId).classList.add("your-active-class");
+
+        // console.log(secId + " is active now");
+
+        let allNavItems = document.querySelectorAll("li");
+
+        for (let i = 0; i < allNavItems.length; i++) {
+
+            const navElement = allNavItems[i];
+
+            // console.log(navElement.textContent);
+            // console.log("Section " + secId.slice(-1));
+
+            if (navElement.textContent === "Section " + secId.slice(-1)) {
+                navElement.classList.add("active");
+                //  console.log(navElement.id + "is active ");
+            }
+
+        }
+
+    } else {
+        document.getElementById(secId).classList.remove("your-active-class");
+    }
+}
+
+
 
 
 /**
@@ -127,3 +178,43 @@ for (let i = 0; i < MySections.length; i++) {
  * Begin Events
  * 
  */
+
+// Add class 'active' to section when near top of viewport
+
+let prevScrollpos = window.pageYOffset;
+window.onscroll = () => {
+    //top button function
+    scrollFun();
+
+    //view port function
+    getSectionIdToViewPort();
+
+
+    // nav bar hidden 
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+        document.getElementById("page__header").style.top = "0";
+    } else {
+        document.getElementById("page__header").style.top = "-50px";
+    }
+    prevScrollpos = currentScrollPos;
+
+
+};
+
+// collapse the section 
+
+var collItem = document.getElementsByClassName("collapsible");
+
+
+for (let i = 0; i < collItem.length; i++) {
+
+    collItem[i].addEventListener("click", function() {
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+        }
+    });
+}
