@@ -1,12 +1,16 @@
 # Landing Page Project
 
-The project has some HTML and CSS styling and JavaScript code to increase the features of navigation throw the project's page.
 
 ## Table of Contents
-
+* [Introduction](#introduction)
 * [Instructions](#instructions)
 * [Tools](#tools)
-* [Technologies](#technologies)
+* [Dependencies](#dependencies)
+* [Screenshots](#screenshots)
+
+## Introduction
+
+The project has some HTML and CSS styling and JavaScript code to increase the features of navigation throw the project's page.
 
 ## Instructions
 ```
@@ -18,9 +22,14 @@ The project has some HTML and CSS styling and JavaScript code to increase the fe
 ## Tools
 
 - VS Code Editor.
+- Google Chrome Browser.
 
-## Technologies
+## dependencies
 
 - HTML 5.
 - CSS 3.
 - Github.
+
+## Screenshots
+![Alt text](web.png?raw=true "Optional Title")
+![Alt text](phone.png?raw=true "Optional Title")
